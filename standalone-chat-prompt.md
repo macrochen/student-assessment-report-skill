@@ -53,6 +53,15 @@
 - **肯定努力**：结合问卷，重点表扬孩子在态度或具体某科上的进步。
 - **一个小目标**：最后只给出一个最容易达成的小建议，不要列清单，避免增加负担。
 
+## 6. 无排名模式（专属规则）
+如果用户提供的输出偏好中明确指定了【分析模式】：无排名模式，你需要执行以下降级与调整，且**绝对不要在报告中提示数据缺失**：
+- **全面屏蔽名次**：不计算“超越比例”和基于名次的“偏科指数”、“名次变异系数”。所有偏科和稳定性指标全部改用**得分率**的方差和变异系数来计算。
+- **图表自适应降维**：
+  - **雷达图**：由5维降级为4维，完全剔除“排名竞争力”。
+  - **趋势图**：仅保留“总得分率”折线，不要输出名次折线，隐藏或删除左侧Y轴 (Y轴代码里设置 `display: false`)。
+  - **四象限图**：横轴改为“得分率趋势（本次得分率-平均得分率）”，纵轴为“平均得分率”。绿色区域代表“高绝对分且还在进步”。
+- **动态填充HTML模板**：由于去掉了名次，你必须把 HTML 模板中的四象限名称、四象限轴标题、折线图轴标题等占位符，按照无排名模式的标准，灵活地填入合适的文案（例如把原来的“名次靠前”替换为“进步幅度大”）。
+
 ---
 
 # 输出规范与 HTML 模板
@@ -376,17 +385,17 @@
   <div style="position:relative; margin-bottom:30px; margin-left:30px;">
     <div class="quadrant-box">
       <div class="quad-line-v"></div><div class="quad-line-h"></div>
-      <div class="quad-label ql-tr">优势巩固区<br>高得分率 + 名次靠前</div>
-      <div class="quad-label ql-tl">可能存在优势偏差区<br>高得分率 + 名次靠后</div>
-      <div class="quad-label ql-br">可能存在薄弱偏差区<br>低得分率 + 名次靠前</div>
-      <div class="quad-label ql-bl">优先干预区<br>低得分率 + 名次靠后</div>
+      <div class="quad-label ql-tr">[第一象限标题]<br>[第一象限特征]</div>
+      <div class="quad-label ql-tl">[第二象限标题]<br>[第二象限特征]</div>
+      <div class="quad-label ql-br">[第四象限标题]<br>[第四象限特征]</div>
+      <div class="quad-label ql-bl">[第三象限标题]<br>[第三象限特征]</div>
       
-      <!-- 以下为动态插入的圆点示例，AI需要根据坐标(left, top)填充。注意：left越大名次越靠前(如90%)，top越小得分率越高(如10%) -->
-      <div class="subject-dot dot-green" style="left:80%;top:22%" title="[科目]：平均得分率[X]%，平均名次[Y]">示例科目1</div>
-      <div class="subject-dot dot-orange" style="left:25%;top:44%" title="[科目]：平均得分率[X]%，平均名次[Y]">示例科目2</div>
+      <!-- 以下为动态插入的圆点示例，AI需要根据坐标(left, top)填充。注意：left和top代表百分比位置。 -->
+      <div class="subject-dot dot-green" style="left:80%;top:22%" title="[科目]：平均得分率[X]%">示例科目1</div>
+      <div class="subject-dot dot-orange" style="left:25%;top:44%" title="[科目]：平均得分率[X]%">示例科目2</div>
     </div>
-    <div class="quad-axis-label quad-axis-x">← 名次靠后（竞争力弱）&emsp;&emsp;&emsp;&emsp;名次靠前（竞争力强） →</div>
-    <div class="quad-axis-label quad-axis-y">← 低得分率&emsp;&emsp;&emsp;&emsp;高得分率 →</div>
+    <div class="quad-axis-label quad-axis-x">[横轴左侧说明] &emsp;&emsp;&emsp;&emsp; [横轴右侧说明]</div>
+    <div class="quad-axis-label quad-axis-y">[纵轴下侧说明] &emsp;&emsp;&emsp;&emsp; [纵轴上侧说明]</div>
   </div>
   <div class="parent-note">
     <div class="parent-note-title">【家长白话版】</div>
@@ -629,7 +638,7 @@ new Chart(trendCtx, {
     scales: {
       y: {
         type: 'linear', display: true, position: 'left', reverse: true,
-        title: { display: true, text: '年级名次（越小越好）', color: '#c62828' }
+        title: { display: true, text: '[左侧Y轴标题]', color: '#c62828' }
       },
       y1: {
         type: 'linear', display: true, position: 'right',
