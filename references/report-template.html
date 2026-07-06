@@ -88,15 +88,15 @@
   .quad-line-v { position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: #ccc; }
   .quad-line-h { position: absolute; top: 50%; left: 0; right: 0; height: 1px; background: #ccc; }
   .quad-label { position: absolute; font-size: 11px; font-weight: 600; padding: 4px 8px; border-radius: 6px; }
-  .ql-tl { top: 8px; left: 8px; background: #e8f5e9; color: var(--c-a); }
-  .ql-tr { top: 8px; right: 8px; background: #fff3e0; color: var(--c-c); }
-  .ql-bl { bottom: 8px; left: 8px; background: #fff3e0; color: var(--c-c); }
-  .ql-br { bottom: 8px; right: 8px; background: #ffebee; color: var(--c-d); }
+  .ql-tl { top: 8px; left: 8px; background: #fff3e0; color: var(--c-c); }
+  .ql-tr { top: 8px; right: 8px; background: #e8f5e9; color: var(--c-a); }
+  .ql-bl { bottom: 8px; left: 8px; background: #ffebee; color: var(--c-d); }
+  .ql-br { bottom: 8px; right: 8px; background: #fff3e0; color: var(--c-c); }
   .quad-axis-label {
     position: absolute; font-size: 10px; color: #999;
   }
   .quad-axis-x { bottom: -18px; left: 50%; transform: translateX(-50%); }
-  .quad-axis-y { left: -50px; top: 50%; transform: translateY(-50%) rotate(-90deg); white-space: nowrap; }
+  .quad-axis-y { left: -30px; top: 50%; transform: translateY(-50%) rotate(-90deg); white-space: nowrap; }
   .subject-dot {
     position: absolute; padding: 5px 12px; border-radius: 14px;
     font-size: 13px; font-weight: 700; color: #fff; cursor: pointer;
@@ -293,19 +293,20 @@
   <div class="module-text">
     <p><strong>核心发现：</strong>[总结优势科目和弱势科目]。</p>
   </div>
-  <div style="position:relative; margin-bottom:30px;">
+  <div style="position:relative; margin-bottom:30px; margin-left:30px;">
     <div class="quadrant-box">
       <div class="quad-line-v"></div><div class="quad-line-h"></div>
-      <div class="quad-label ql-tl">优势巩固区<br>高得分率 + 名次靠前</div>
-      <div class="quad-label ql-tr">可能存在优势偏差区<br>高得分率 + 名次靠后</div>
-      <div class="quad-label ql-bl">可能存在薄弱偏差区<br>低得分率 + 名次靠前</div>
-      <div class="quad-label ql-br">优先干预区<br>低得分率 + 名次靠后</div>
+      <div class="quad-label ql-tr">优势巩固区<br>高得分率 + 名次靠前</div>
+      <div class="quad-label ql-tl">可能存在优势偏差区<br>高得分率 + 名次靠后</div>
+      <div class="quad-label ql-br">可能存在薄弱偏差区<br>低得分率 + 名次靠前</div>
+      <div class="quad-label ql-bl">优先干预区<br>低得分率 + 名次靠后</div>
       
-      <!-- 以下为动态插入的圆点示例，AI需要根据坐标(left, top)填充 -->
-      <div class="subject-dot dot-green" style="left:20%;top:22%" title="[科目]：平均得分率[X]%，平均名次[Y]">示例科目1</div>
-      <div class="subject-dot dot-orange" style="left:75%;top:44%" title="[科目]：平均得分率[X]%，平均名次[Y]">示例科目2</div>
+      <!-- 以下为动态插入的圆点示例，AI需要根据坐标(left, top)填充。注意：left越大名次越靠前(如90%)，top越小得分率越高(如10%) -->
+      <div class="subject-dot dot-green" style="left:80%;top:22%" title="[科目]：平均得分率[X]%，平均名次[Y]">示例科目1</div>
+      <div class="subject-dot dot-orange" style="left:25%;top:44%" title="[科目]：平均得分率[X]%，平均名次[Y]">示例科目2</div>
     </div>
-    <div class="quad-axis-label quad-axis-x">← 名次靠前（竞争力强）&emsp;&emsp;&emsp;&emsp;名次靠后（竞争力弱）→</div>
+    <div class="quad-axis-label quad-axis-x">← 名次靠后（竞争力弱）&emsp;&emsp;&emsp;&emsp;名次靠前（竞争力强） →</div>
+    <div class="quad-axis-label quad-axis-y">← 低得分率&emsp;&emsp;&emsp;&emsp;高得分率 →</div>
   </div>
   <div class="parent-note">
     <div class="parent-note-title">【家长白话版】</div>

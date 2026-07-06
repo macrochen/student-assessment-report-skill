@@ -7,6 +7,14 @@
 - 输入：学生多次考试成绩表（Markdown 表格）+ 辅助参数（人数、满分等）
 - 输出：包含五维雷达图、趋势图、四象限矩阵、风险信号的单文件 HTML 报告
 
+## 配套工具 (Data Collector)
+
+为了协助家长更快捷、规范地输入本 Skill 所需的成绩大表和补充问卷（QA），我们提供了一个配套的前端数据收集 Web 应用：
+- **在线访问地址**：[https://student-data-collector.pages.dev/](https://student-data-collector.pages.dev/)
+- **源码工程路径**：`~/workspace/jialvyuan-student-analyzer` (项目名 `student-data-collector`)
+
+家长可通过该网页快速填报数据，一键生成符合本 Skill 要求的 Markdown 格式文本，直接粘贴进对话框即可。
+
 ## 核心特性
 
 - **8 阶段严格工作流**：输入校验 → 数据清洗 → 缺失检测 → 派生指标计算 → 评级 → 报告生成 → 汇总表 → 自检
